@@ -1,0 +1,97 @@
+/* src/styles/DeckDetails.css */
+
+/* Main container styling */
+.deck-details-container {
+  min-height: 100vh;
+  padding: 20px;
+  background-color: var(--red);
+  text-align: center;
+}
+
+/* Header styling */
+.deck-header {
+  background-color: var(--green);
+  color: white;
+  padding: 40px 20px;
+  border-radius: 10px;
+}
+
+.deck-header-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Controls section */
+.deck-controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.control-button {
+  background-color: #ffffff;
+  color: var(--green);
+  padding: 10px 16px;
+  border: 2px solid var(--green);
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.control-button:hover {
+  background-color: var(--orange);
+  color: white;
+  border-color: var(--orange);
+}
+
+.start-btn {
+  background-color: var(--green);
+  color: white;
+}
+
+.start-btn:hover {
+  background-color: #388E3C;
+}
+
+/* Flashcard list layout */
+.flashcard-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+/* Flashcard item styling */
+.flashcard-item {
+  background-color: #f4f4f4;
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+/* Flashcard number in top-right corner */
+.flashcard-number {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-weight: bold;
+  color: #000;
+  font-size: 1.1em;
+}
+
+/* Checkbox for card selection */
+.select-checkbox {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
