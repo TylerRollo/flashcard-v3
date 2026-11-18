@@ -1,3 +1,4 @@
+//App.js
 import './styles/App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
@@ -14,6 +15,8 @@ import Results from "./pages/Results";
 import UploadCSV from "./pages/FastAdd";
 import Confirmation from './pages/Confirmation';
 
+
+// Setup all application routes
 function App() {
   return (
     <Router>

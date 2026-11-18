@@ -1,4 +1,4 @@
-// Import necessary React modules and hooks
+// Deck Details
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import constants from '../utils/constants';
@@ -16,10 +16,12 @@ const DeckDetails = () => {
   const [editingCard, setEditingCard] = useState(null);
   const [selectedCards, setSelectedCards] = useState(new Set());
 
+    // Fetch deck details on component mount or ID change
   useEffect(() => {
     fetchDeckDetails();
-  }, [id]);
+  }, [id]); 
 
+  // Async function to get deck data and flashcards from backend
   const fetchDeckDetails = async () => {
     try {
       const deckResponse = await fetch(`http://localhost:5000/api/decks/${id}`);
@@ -36,6 +38,7 @@ const DeckDetails = () => {
     }
   };
 
+  // Async function to validate and submit a new flashcard
   const addFlashcard = async () => {
     if (!newCard.front || !newCard.back) {
       toast.error('All fields are required.');
@@ -66,6 +69,7 @@ const DeckDetails = () => {
     }
   };
 
+  // Async function to delete selected flashcards in parallel
   const deleteSelectedFlashcards = async () => {
     if (!window.confirm("Are you sure you want to delete the selected flashcards?")) return;
 
@@ -81,6 +85,7 @@ const DeckDetails = () => {
     }
   };
 
+  // Async function to update an existing flashcard
   const updateFlashcard = async (cardId, updatedCard) => {
     try {
       await fetch(`http://localhost:5000/api/flashcards/${cardId}`, {
@@ -96,6 +101,7 @@ const DeckDetails = () => {
     }
   };
 
+  // Function to generate and download deck flashcards as a JSON file
   const generateJSON = () => {
     if (!flashcards || flashcards.length === 0) {
       toast.warning("No flashcards to export.");
@@ -121,6 +127,7 @@ const DeckDetails = () => {
     }
   };
 
+  // Function to toggle selection state of a flashcard ID
   const toggleSelectCard = (cardId) => {
     setSelectedCards(prev => {
       const newSet = new Set(prev);

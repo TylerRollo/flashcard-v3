@@ -1,6 +1,7 @@
+// FastAdd.js
 import React, { useState } from "react";
-import constants from "../utils/constants"; // Importing constants for validation
-import "../styles/pages/FastAdd.css"; // Importing CSS for styling
+import constants from "../utils/constants";
+import "../styles/pages/FastAdd.css"; 
 import { toast } from 'react-toastify';
 
 const UploadCSV = () => {
@@ -23,28 +24,26 @@ const UploadCSV = () => {
     // Handles file selection and sets deck name based on file name
     const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
-    if (!selectedFile) {
-        toast.warning("No file selected.");
-        return;
-    }
-    setFile(selectedFile);
-    setFileName(selectedFile.name);
-    setDeckName(selectedFile.name.replace(/\.json$/, ""));
+    
+    if (selectedFile) {
+        setFile(selectedFile);
+        setFileName(selectedFile.name);
+        setDeckName(selectedFile.name.replace(/\.json$/, ""));
+    } else toast.warning("No file selected.");
     };
-
 
     // Handles the actual upload process and deck/flashcards creation
     const handleUpload = async () => {
         if (!file) {
             toast.warning("Please select a JSON file.");
             return;
-          }
+        }
           
-          console.log(deckName.length);
-          if (deckName.length > constants.MAX_DECK_NAME_LENGTH) {
+        console.log(deckName.length);
+        if (deckName.length > constants.MAX_DECK_NAME_LENGTH) {
             toast.warning(`Deck name cannot exceed ${constants.MAX_DECK_NAME_LENGTH} characters.`);
             return;
-          }
+        }
 
         setIsUploading(true);
         setProgress(0);

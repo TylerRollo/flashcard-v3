@@ -1,8 +1,8 @@
-// src/pages/Home.js
+// Home.js
 
 import React from "react";
-import { Link } from "react-router-dom"; // Importing Link for internal navigation
-import "../styles/pages/Home.css"; // Importing CSS for styling
+import { Link } from "react-router-dom"; 
+import "../styles/pages/Home.css"; 
 
 // Functional component for the Home page
 const Home = () => {
@@ -45,4 +45,4 @@ const Home = () => {
   );
 };
 
-export default Home; // Exporting the component to be used in routing
+export default Home;

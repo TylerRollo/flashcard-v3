@@ -1,3 +1,4 @@
+// confirmation.js
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import "../styles/pages/Confirmation.css"
@@ -5,6 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import testModes from '../utils/testModes';
 
+// Component for confirming selected flashcards and test mode before starting the game
 const Confirmation = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -14,10 +16,12 @@ const Confirmation = () => {
   const [selectedCards, setSelectedCards] = useState(new Set());
   const testMode = location.state.testMode || testModes.FRONT_FIRST;
 
+  // Fetch deck details on component mount or ID change
   useEffect(() => {
     fetchDeckDetails();
   }, [id]);
 
+  // Async function to fetch deck info and flashcards from backend
   const fetchDeckDetails = async () => {
     try {
       const deckResponse = await fetch(`http://localhost:5000/api/decks/${id}`);
@@ -35,6 +39,7 @@ const Confirmation = () => {
     }
   };
 
+  // Function to toggle selection state of an individual card ID
   const toggleSelectCard = (cardId) => {
     setSelectedCards(prev => {
       const newSet = new Set(prev);
@@ -44,6 +49,7 @@ const Confirmation = () => {
     });
   };
 
+  // Function to select all or deselect all flashcards
   const handleSelectAll = () => {
     if (selectedCards.size === flashcards.length) {
       setSelectedCards(new Set());
@@ -52,6 +58,7 @@ const Confirmation = () => {
     }
   };
 
+  // Function to validate selection and navigate to the game play view with state
   const handleStartGame = () => {
     if (selectedCards.size === 0) {
       toast.warning("Please select at least one card to start the game.");

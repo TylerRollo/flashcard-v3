@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import testModes from "../utils/testModes"; // Predefined constants for testing modes (front-first, back-first, random)
-import "../styles/pages/PlaygameDetails.css"; // Styling for the PlaygameDetails component
-import { toast } from "react-toastify"; // Notification library (not currently used in this file)
+import testModes from "../utils/testModes"; 
+import "../styles/pages/PlaygameDetails.css"; 
+import { toast } from "react-toastify"; 
 
 // Flashcard test play page
 const PlaygameDetails = () => {
-  const navigate = useNavigate(); // Navigation hook to move between pages
-  const location = useLocation(); // Access data passed via route state
-  const testMode = location.state?.testMode || testModes.FRONT_FIRST; // Use passed test mode, default to FRONT_FIRST
+  const navigate = useNavigate(); 
+  const location = useLocation();
+  const testMode = location.state?.testMode || testModes.FRONT_FIRST; 
 
   // Get deck ID from URL route parameter
   const { id } = useParams();
@@ -18,23 +18,23 @@ const PlaygameDetails = () => {
   const flashcards = location.state?.flashcards || [];
 
   // State for tracking flashcard progression
-  const [remainingCards, setRemainingCards] = useState([]); // Cards yet to be shown
-  const [currentCard, setCurrentCard] = useState(null); // Card currently displayed
-  const [currentIndex, setCurrentIndex] = useState(1); // 1-based index for progress bar
+  const [remainingCards, setRemainingCards] = useState([]); 
+  const [currentCard, setCurrentCard] = useState(null); 
+  const [currentIndex, setCurrentIndex] = useState(1); 
 
   // State for tracking user answers
   const [correctCount, setCorrectCount] = useState(0);
   const [incorrectCount, setIncorrectCount] = useState(0);
-  const [incorrectCards, setIncorrectCards] = useState([]); // Tracks which cards were missed
+  const [incorrectCards, setIncorrectCards] = useState([]);
 
   // State for UI behavior
-  const [showBack, setShowBack] = useState(false); // Determines which side of the card is showing
-  const [showNext, setShowNext] = useState(false); // Shows answer buttons once card is flipped
+  const [showBack, setShowBack] = useState(false); 
+  const [showNext, setShowNext] = useState(false); 
 
   // Initialize on first render or when deck ID changes
   useEffect(() => {
-    resetDeck(flashcards); // Shuffle and prepare cards
-    setCardFace(); // Set which face of the card to show based on test mode
+    resetDeck(flashcards);
+    setCardFace(); 
   }, [id]);
 
   // Resets the deck and state tracking for a fresh start
@@ -72,7 +72,7 @@ const PlaygameDetails = () => {
       updatedCorrectCount += 1;
     } else {
       updatedIncorrectCount += 1;
-      updatedIncorrectCards.push(currentCard); // Track incorrect answer
+      updatedIncorrectCards.push(currentCard);
     }
 
     // Update state with answer
@@ -81,8 +81,8 @@ const PlaygameDetails = () => {
     setIncorrectCards(updatedIncorrectCards);
 
     // Reset UI
-    setShowBack(!showBack); // Flip back to original side
-    setShowNext(!showNext); // Hide answer buttons
+    setShowBack(!showBack);
+    setShowNext(!showNext);
 
     // Move to next card if available, otherwise go to results page
     if (remainingCards.length > 1) {
@@ -91,7 +91,6 @@ const PlaygameDetails = () => {
       setCurrentCard(newRemaining[0]);
       setCurrentIndex(currentIndex + 1);
     } else {
-      // All cards completed, navigate to results
       navigateToResults(updatedCorrectCount, updatedIncorrectCount, updatedIncorrectCards);
     }
 

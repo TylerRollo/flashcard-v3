@@ -1,11 +1,13 @@
+// results.js
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import testModes from "../utils/testModes.js"; // Import available test modes
-import "../styles/pages/Results.css"; // Import styles
+import testModes from "../utils/testModes.js"; 
+import "../styles/pages/Results.css";
 
+// Hooks for current and previous states
 const Results = () => {
-  const navigate = useNavigate(); // Hook for navigation
-  const location = useLocation(); // Hook to access state passed from previous screen
+  const navigate = useNavigate(); 
+  const location = useLocation(); 
 
   // Destructure state values passed from the PlaygameDetails component
   const {

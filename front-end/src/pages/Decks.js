@@ -1,5 +1,4 @@
-// src/pages/Decks.js
-
+// Decks.js
 import React, { useEffect, useState } from "react";
 import constants from "../utils/constants";
 import { Link } from "react-router-dom";

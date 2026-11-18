@@ -1,13 +1,14 @@
+// Playgame.js
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Hook for programmatic navigation
-import testModes from "../utils/testModes"; // Importing test mode constants
-import "../styles/pages/Decks.css"; // Importing CSS for styling
+import { useNavigate } from "react-router-dom"; 
+import testModes from "../utils/testModes"; 
+import "../styles/pages/Decks.css"; 
 
 // Functional component for selecting a deck and test mode
 const Playgame = () => {
-  const [decks, setDecks] = useState([]); // Stores list of decks from backend
-  const [testMode, setTestMode] = useState(testModes.FRONT_FIRST); // Default test mode
-  const navigate = useNavigate(); // Navigation function from react-router-dom
+  const [decks, setDecks] = useState([]); 
+  const [testMode, setTestMode] = useState(testModes.FRONT_FIRST);
+  const navigate = useNavigate(); 
 
   // Fetch decks from API on component mount
   useEffect(() => {
