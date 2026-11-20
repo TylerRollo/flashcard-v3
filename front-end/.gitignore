@@ -1,16 +1,15 @@
-# Dependencies
 node_modules/
-
-# Production builds
-dist/
 build/
-
-# Environment variables & secrets (Crucial)
-.env
+dist/
 .env.local
-.env.*.local
-
-# Logs and OS junk
+.env.development.local
+.env.test.local
+.env.production.local
+.env
+!.env.example
+*.log
 npm-debug.log*
 .DS_Store
 Thumbs.db
+.vscode/
+.idea/

@@ -1,21 +1,10 @@
-# Dependencies
 node_modules/
-
-# Build output
-dist/
-build/
-
-# Environment variables & secrets (Crucial)
 .env
 .env.*
-
-# Local databases & logs
-*.db
-*.sqlite
-*.sqlite3
-logs/
+!.env.example
 *.log
-
-# OS junk
+npm-debug.log*
 .DS_Store
 Thumbs.db
+.vscode/
+.idea/
