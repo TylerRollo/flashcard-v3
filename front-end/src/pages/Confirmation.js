@@ -24,12 +24,12 @@ const Confirmation = () => {
   // Async function to fetch deck info and flashcards from backend
   const fetchDeckDetails = async () => {
     try {
-      const deckResponse = await fetch(`http://localhost:5000/api/decks/${id}`);
+      const deckResponse = await fetch(`api/decks/${id}`);
       if (!deckResponse.ok) throw new Error(`Error fetching deck: ${deckResponse.status}`);
       const deckData = await deckResponse.json();
       setDeck(deckData);
 
-      const flashcardsResponse = await fetch(`http://localhost:5000/api/flashcards/${id}`);
+      const flashcardsResponse = await fetch(`/api/flashcards/${id}`);
       if (!flashcardsResponse.ok) throw new Error(`Error fetching flashcards: ${flashcardsResponse.status}`);
       const flashcardData = await flashcardsResponse.json();
       setFlashcards(flashcardData);

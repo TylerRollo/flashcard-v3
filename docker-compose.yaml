@@ -3,13 +3,13 @@ services:
     container_name: frontend
     build:
       context: ./front-end
-    image: frontend-image
+    image: ${REGISTRY_PREFIX:-local}/flashcard-frontend:latest
     ports:
       - "80:80"
     environment:
       - HOST=0.0.0.0
       - PORT=80
-      - REACT_APP_API_URL=${REACT_APP_API_URL:-http://localhost:5000}
+      - REACT_APP_API_URL=
     depends_on:
       - backend
     networks:
@@ -19,7 +19,7 @@ services:
     container_name: backend
     build:
       context: ./back-end
-    image: backend-image
+    image: ${REGISTRY_PREFIX:-local}/flashcard-backend:latest
     ports:
       - "5000:5000"
     environment:
@@ -47,6 +47,15 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    networks:
+      - three-tier-net
+
+  cloudflared:
+    container_name: cloudflared
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate --url http://frontend:80
+    depends_on:
+      - frontend
     networks:
       - three-tier-net
 

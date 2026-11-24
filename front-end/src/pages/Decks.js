@@ -30,7 +30,7 @@ const Decks = () => {
   // Fetch all decks from the backend
   const fetchDecks = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/decks");
+      const response = await fetch("/api/decks");
       const data = await response.json();
       setDecks(data);
     } catch (error) {
@@ -51,7 +51,7 @@ const Decks = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/decks", {
+      const response = await fetch("/api/decks", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ user_id: userId, name: newDeckName }),
@@ -80,7 +80,7 @@ const Decks = () => {
     try {
       await Promise.all(
         selectedDecks.map(deckId =>
-          fetch(`http://localhost:5000/api/decks/${deckId}`, { method: "DELETE" })
+          fetch(`/api/decks/${deckId}`, { method: "DELETE" })
         )
       );
       setSelectedDecks([]);
@@ -122,7 +122,7 @@ const Decks = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/decks/${deckId}`, {
+      const response = await fetch(`/api/decks/${deckId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: editedDeckName }),

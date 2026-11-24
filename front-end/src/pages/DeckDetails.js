@@ -24,12 +24,12 @@ const DeckDetails = () => {
   // Async function to get deck data and flashcards from backend
   const fetchDeckDetails = async () => {
     try {
-      const deckResponse = await fetch(`http://localhost:5000/api/decks/${id}`);
+      const deckResponse = await fetch(`/api/decks/${id}`);
       if (!deckResponse.ok) throw new Error(`Error fetching deck: ${deckResponse.status}`);
       const deckData = await deckResponse.json();
       setDeck(deckData);
 
-      const flashcardsResponse = await fetch(`http://localhost:5000/api/flashcards/${id}`);
+      const flashcardsResponse = await fetch(`/api/flashcards/${id}`);
       if (!flashcardsResponse.ok) throw new Error(`Error fetching flashcards: ${flashcardsResponse.status}`);
       const flashcardData = await flashcardsResponse.json();
       setFlashcards(flashcardData);
@@ -55,7 +55,7 @@ const DeckDetails = () => {
     }
   
     try {
-      await fetch(`http://localhost:5000/api/flashcards/${id}`, {
+      await fetch(`/api/flashcards/${id}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newCard),
@@ -75,7 +75,7 @@ const DeckDetails = () => {
 
     try {
       await Promise.all(Array.from(selectedCards).map(cardId =>
-        fetch(`http://localhost:5000/api/flashcards/${cardId}`, { method: 'DELETE' })
+        fetch(`/api/flashcards/${cardId}`, { method: 'DELETE' })
       ));
 
       setSelectedCards(new Set());
@@ -88,7 +88,7 @@ const DeckDetails = () => {
   // Async function to update an existing flashcard
   const updateFlashcard = async (cardId, updatedCard) => {
     try {
-      await fetch(`http://localhost:5000/api/flashcards/${cardId}`, {
+      await fetch(`/api/flashcards/${cardId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedCard),

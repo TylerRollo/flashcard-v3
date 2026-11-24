@@ -72,7 +72,7 @@ const UploadCSV = () => {
                 };
 
                 // Create a new deck on the backend
-                const deckResponse = await fetch("http://localhost:5000/api/decks", {
+                const deckResponse = await fetch("/api/decks", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ user_id: userId, name: deckName.trim(), description: "" })
@@ -86,7 +86,7 @@ const UploadCSV = () => {
 
                 // Upload each flashcard to the backend
                 await Promise.all(newDeck.cards.map(async (card, index) => {
-                    await fetch(`http://localhost:5000/api/flashcards/${deckId}`, {
+                    await fetch(`/api/flashcards/${deckId}`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ deck_id: deckId, front: card.front, back: card.back })
