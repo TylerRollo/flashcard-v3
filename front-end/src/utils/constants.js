@@ -1,6 +1,6 @@
 // constants.js
 const constants = {
-  API_URL: "http://localhost:5000/api",
+  API_URL: "/api",
   DECKS_URL: "/decks",
   FLASHCARDS_URL: "/flashcards",
   DECK_ID: "deckId",

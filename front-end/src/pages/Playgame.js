@@ -18,7 +18,7 @@ const Playgame = () => {
   // Async function to get deck data from the backend
   const fetchDecks = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/decks");
+      const response = await fetch("/api/decks");
       const data = await response.json();
       setDecks(data); // Update state with retrieved decks
     } catch (error) {
